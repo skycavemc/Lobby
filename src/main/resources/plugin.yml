@@ -1,0 +1,11 @@
+name: SkyCaveLobby
+main: de.leonheuer.skycave.lobby.SkyCaveLobby
+version: 1.0.2
+author: Hakuyamu
+api-version: 1.16
+
+commands:
+  setspawn:
+    permission: skycave.lobby.command.setspawn
+  spawn:
+    description: spawn command
