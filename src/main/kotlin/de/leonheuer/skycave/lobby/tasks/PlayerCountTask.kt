@@ -13,12 +13,12 @@ class PlayerCountTask(private val main: SkyCaveLobby): Runnable {
             return
         }
 
-        val player = Iterables.getFirst(Bukkit.getOnlinePlayers(), null)
+        val player = Iterables.getFirst(Bukkit.getOnlinePlayers(), null) ?: return
 
         var out = ByteStreams.newDataOutput()
         out.writeUTF("PlayerCount")
         out.writeUTF("ALL")
-        player!!.sendPluginMessage(main, "BungeeCord", out.toByteArray())
+        player.sendPluginMessage(main, "BungeeCord", out.toByteArray())
 
         out = ByteStreams.newDataOutput()
         out.writeUTF("PlayerCount")

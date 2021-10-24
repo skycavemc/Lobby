@@ -30,10 +30,11 @@ object GUIUtil {
                 createPlaceholders(inv, 5)
 
                 val count = main.playerCount.skybee
-                if (count == 0) count.inc()
+                var itemCount = count;
+                if (count == 0) itemCount = 1
 
                 inv.setItem(19, getItemStack(LobbyItem.COMPASS_SPAWN, 1))
-                inv.setItem(21, getItemStack(LobbyItem.COMPASS_SKYBEE, count,
+                inv.setItem(21, getItemStack(LobbyItem.COMPASS_SKYBEE, itemCount,
                     StringPair("%count", "${main.playerCount.skybee}")))
                 inv.setItem(23, getItemStack(LobbyItem.COMPASS_SOON, 1))
                 inv.setItem(25, getItemStack(LobbyItem.COMPASS_SOON, 1))
