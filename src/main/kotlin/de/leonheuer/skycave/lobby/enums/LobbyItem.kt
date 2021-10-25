@@ -9,12 +9,11 @@ enum class LobbyItem(val title: String, val mat: Material, val description: Stri
 
     COMPASS_SPAWN("&e&lSpawn", Material.MAGMA_CREAM, "&r//&7&oTeleportiert dich zurück zum Spawn"),
 
-    COMPASS_SKYBEE("&6&lSkyBee", Material.GRASS_BLOCK,
-        "&r//&7&oErbaue dein eigenes Inselreich,//&7&oalleine oder mit Freunden//&r//&a&lOnline&8: &e%count Spieler"),
+    COMPASS_SKYBLOCK("&a&lSkyBlock", Material.GRASS_BLOCK,
+        "&r//&7&oErbaue dein eigenes Inselimperium!//&7&oDu entscheidest, was aus deiner Insel wird.//&r//&a&lOnline&8: &e%count Spieler"),
 
-    COMPASS_SKYPARTY("&d&lSkyParty", Material.FIREWORK_ROCKET,
-        "&r//&7&oSpiele mit 2 bis 8 Spielern//&7&oauf einem großen Spielfeld.//" +
-                "&7&oNach jeder Würfelrunde//&7&ogibt es ein Minispiel.//&7&oDer erste im Ziel gewinnt!//&r//&c&lIn der Entwicklung"),
+    COMPASS_HARDCORE("&c&lHardcore SkyBlock", Material.TNT_MINECART,
+        "&r//&7&oDu suchst nach einer echten//" + "&7&oHerausforderung? Du liebst SkyBlock?//&7&oDann bist du hier richtig!//&r//&c&lIn der Entwicklung"),
 
     COMPASS_SOON("&7Ein geheimnisvolles Item", Material.FIREWORK_STAR, "&cWird noch entlüftet!"),
 
