@@ -65,10 +65,10 @@ class PlayerJoinLeaveListener(private val main: SkyCaveLobby) : Listener {
 
         val inv = player.inventory
         inv.clear()
-        inv.setItem(1, GUIUtil.getItemStack(LobbyItem.COMPASS, 1))
-        inv.setItem(3, GUIUtil.setUnbreakable(GUIUtil.getItemStack(LobbyItem.GRAPPLER, 1)))
-        inv.setItem(5, GUIUtil.getItemStack(LobbyItem.SPEED_OFF, 1))
-        inv.setItem(7, GUIUtil.getItemStack(LobbyItem.VISIBLE_ALL, 1))
+        inv.setItem(1, GUIUtil.getLobbyItem(LobbyItem.COMPASS, 1))
+        inv.setItem(3, GUIUtil.setUnbreakable(GUIUtil.getLobbyItem(LobbyItem.GRAPPLER, 1)))
+        inv.setItem(5, GUIUtil.getLobbyItem(LobbyItem.SPEED_OFF, 1))
+        inv.setItem(7, GUIUtil.getLobbyItem(LobbyItem.VISIBLE_ALL, 1))
 
         InvisibilityUtil.hideForAllPlayers(player)
     }
