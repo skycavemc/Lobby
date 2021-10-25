@@ -26,25 +26,25 @@ class PlayerInteractListener(private val main: SkyCaveLobby): Listener {
                 event.isCancelled = true
                 player.walkSpeed = 0.5f
                 player.flySpeed = 0.5f
-                player.inventory.setItemInMainHand(GUIUtil.getItemStack(LobbyItem.SPEED_ON, 1))
+                player.inventory.setItemInMainHand(GUIUtil.getLobbyItem(LobbyItem.SPEED_ON, 1))
             }
             Material.FEATHER -> {
                 event.isCancelled = true
                 player.walkSpeed = 0.2f
                 player.flySpeed = 0.2f
-                player.inventory.setItemInMainHand(GUIUtil.getItemStack(LobbyItem.SPEED_OFF, 1))
+                player.inventory.setItemInMainHand(GUIUtil.getLobbyItem(LobbyItem.SPEED_OFF, 1))
             }
             Material.LIME_DYE -> {
                 event.isCancelled = true
                 main.invisibility.invisible.add(player)
                 InvisibilityUtil.hideAllPlayersFor(player)
-                player.inventory.setItemInMainHand(GUIUtil.getItemStack(LobbyItem.VISIBLE_NONE, 1))
+                player.inventory.setItemInMainHand(GUIUtil.getLobbyItem(LobbyItem.VISIBLE_NONE, 1))
             }
             Material.GRAY_DYE -> {
                 event.isCancelled = true
                 main.invisibility.invisible.remove(player)
                 InvisibilityUtil.showAllPlayersFor(player)
-                player.inventory.setItemInMainHand(GUIUtil.getItemStack(LobbyItem.VISIBLE_ALL, 1))
+                player.inventory.setItemInMainHand(GUIUtil.getLobbyItem(LobbyItem.VISIBLE_ALL, 1))
             }
             else -> return
         }
