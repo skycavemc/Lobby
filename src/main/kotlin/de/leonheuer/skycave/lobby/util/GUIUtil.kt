@@ -34,11 +34,11 @@ object GUIUtil {
                 var itemCount = count;
                 if (count == 0) itemCount = 1
 
-                inv.setItem(11, getLobbyItem(LobbyItem.COMPASS_SPAWN, 1))
-                inv.setItem(13, getLobbyItem(LobbyItem.COMPASS_SKYBLOCK, itemCount,
+                inv.setItem(10, getLobbyItem(LobbyItem.COMPASS_SPAWN, 1))
+                inv.setItem(12, getLobbyItem(LobbyItem.COMPASS_SKYBLOCK, itemCount,
                     StringPair("%count", "${main.playerCount.skybee}")))
-                inv.setItem(15, getLobbyItem(LobbyItem.COMPASS_HARDCORE, 1))
-                inv.setItem(17, getLobbyItem(LobbyItem.COMPASS_SOON, 1))
+                inv.setItem(14, getLobbyItem(LobbyItem.COMPASS_HARDCORE, 1))
+                inv.setItem(16, getLobbyItem(LobbyItem.COMPASS_SOON, 1))
 
                 player.openInventory(inv)
             }
