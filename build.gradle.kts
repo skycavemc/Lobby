@@ -2,8 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import kotlin.to
 
 plugins {
-    kotlin("jvm") version "1.5.10"
-    id("com.github.johnrengelman.shadow") version "4.0.4"
+    kotlin("jvm") version "1.6.10"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "de.leonheuer.skycave"
@@ -29,7 +29,7 @@ tasks {
     }
 
     named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
-        archiveBaseName.set(project.name)
+        archiveFileName.set("${project.name}-${project.version}.jar")
         mergeServiceFiles()
         manifest {
             attributes(mapOf("Main-Class" to "de.leonheuer.skycave.lobby.SkyCaveLobby"))
