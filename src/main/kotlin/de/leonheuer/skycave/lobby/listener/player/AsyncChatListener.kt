@@ -1,4 +1,4 @@
-package de.leonheuer.skycave.lobby.listener
+package de.leonheuer.skycave.lobby.listener.player
 
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener

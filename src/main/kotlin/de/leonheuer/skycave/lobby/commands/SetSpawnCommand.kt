@@ -15,11 +15,10 @@ class SetSpawnCommand(private val main: SkyCaveLobby): CommandExecutor {
             return true
         }
 
-        val player: Player = sender
-        main.dataManager.setSpawn(player.location)
+        main.dataManager.setSpawn(sender.location)
         main.dataManager.save()
-        player.sendMessage(Message.SET_SPAWN_SUCCESS.getMessage())
-        return true;
+        sender.sendMessage(Message.SET_SPAWN_SUCCESS.getMessage())
+        return true
     }
 
 }

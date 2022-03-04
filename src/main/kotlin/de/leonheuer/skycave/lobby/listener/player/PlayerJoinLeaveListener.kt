@@ -1,10 +1,12 @@
-package de.leonheuer.skycave.lobby.listener
+package de.leonheuer.skycave.lobby.listener.player
 
 import de.leonheuer.skycave.lobby.SkyCaveLobby
 import de.leonheuer.skycave.lobby.enums.LobbyItem
 import de.leonheuer.skycave.lobby.util.GUIUtil
 import de.leonheuer.skycave.lobby.util.InvisibilityUtil
 import de.leonheuer.skycave.lobby.util.ScoreBoardUtil
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.title.Title
 import org.bukkit.GameMode
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -14,17 +16,25 @@ import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerKickEvent
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.event.player.PlayerRespawnEvent
-import java.lang.IllegalArgumentException
+import java.time.Duration
 
-@Suppress("unused", "deprecation")
+@Suppress("unused")
 class PlayerJoinLeaveListener(private val main: SkyCaveLobby) : Listener {
 
     @EventHandler
     fun onPlayerJoin(event: PlayerJoinEvent) {
         val player = event.player
-        event.joinMessage = null
+        event.joinMessage(null)
         resetPlayer(player)
-        player.sendTitle("§8» §6Willkommen §8«", " §7auf der §3SkyCave §eLobby",10, 40, 20)
+        player.showTitle(Title.title(
+            Component.text("§8» §6Willkommen §8«"),
+            Component.text(" §7in der §3SkyCave §eLobby"),
+            Title.Times.times(
+                Duration.ofMillis(500),
+                Duration.ofSeconds(2),
+                Duration.ofSeconds(1)
+            )
+        ))
         ScoreBoardUtil.setScoreBoard(player)
 
         try {
@@ -51,7 +61,6 @@ class PlayerJoinLeaveListener(private val main: SkyCaveLobby) : Listener {
     }
 
     private fun resetPlayer(player: Player) {
-        player.maxHealth = 20.0
         player.health = 20.0
         player.foodLevel = 20
         player.exhaustion = 0F
@@ -75,17 +84,17 @@ class PlayerJoinLeaveListener(private val main: SkyCaveLobby) : Listener {
 
     @EventHandler
     fun onPlayerQuit(event: PlayerQuitEvent) {
-        event.quitMessage = null
+        event.quitMessage(null)
     }
 
     @EventHandler
     fun onPlayerKick(event: PlayerKickEvent) {
-        event.leaveMessage = ""
+        event.leaveMessage(Component.text(""))
     }
 
     @EventHandler
     fun onPlayerQuit(event: PlayerDeathEvent) {
-        event.deathMessage = null
+        event.deathMessage(null)
     }
 
 }

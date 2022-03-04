@@ -1,4 +1,4 @@
-package de.leonheuer.skycave.lobby.listener
+package de.leonheuer.skycave.lobby.listener.player
 
 import de.leonheuer.skycave.lobby.SkyCaveLobby
 import de.leonheuer.skycave.lobby.enums.GUI
@@ -36,13 +36,13 @@ class PlayerInteractListener(private val main: SkyCaveLobby): Listener {
             }
             Material.LIME_DYE -> {
                 event.isCancelled = true
-                main.invisibility.invisible.add(player)
+                main.invisible.add(player)
                 InvisibilityUtil.hideAllPlayersFor(player)
                 player.inventory.setItemInMainHand(GUIUtil.getLobbyItem(LobbyItem.VISIBLE_NONE, 1))
             }
             Material.GRAY_DYE -> {
                 event.isCancelled = true
-                main.invisibility.invisible.remove(player)
+                main.invisible.remove(player)
                 InvisibilityUtil.showAllPlayersFor(player)
                 player.inventory.setItemInMainHand(GUIUtil.getLobbyItem(LobbyItem.VISIBLE_ALL, 1))
             }

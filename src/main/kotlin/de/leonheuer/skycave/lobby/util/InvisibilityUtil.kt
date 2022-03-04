@@ -23,7 +23,7 @@ object InvisibilityUtil {
 
     fun hideForAllPlayers(player: Player) {
         Bukkit.getOnlinePlayers().forEach {
-            if (main.invisibility.invisible.contains(it) && it != player) {
+            if (main.invisible.contains(it) && it != player) {
                 it.hidePlayer(main, player)
             }
         }

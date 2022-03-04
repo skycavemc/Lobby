@@ -7,7 +7,7 @@ enum class Command(val content: String) {
     HELP("help"),
     VER("ver"),
     ICANHASBUKKIT("icanhasbukkit"),
-    ME("me")
+    ME("me"),
     ;
 
 }

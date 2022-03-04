@@ -3,8 +3,10 @@ package de.leonheuer.skycave.lobby.util
 import de.leonheuer.skycave.lobby.SkyCaveLobby
 import de.leonheuer.skycave.lobby.enums.GUI
 import de.leonheuer.skycave.lobby.enums.LobbyItem
-import de.leonheuer.skycave.lobby.models.CustomItem
+import de.leonheuer.skycave.lobby.enums.Server
+import de.leonheuer.skycave.lobby.models.ItemBuilder
 import de.leonheuer.skycave.lobby.models.StringPair
+import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Material
@@ -19,24 +21,23 @@ object GUIUtil {
 
     private val main = JavaPlugin.getPlugin(SkyCaveLobby::class.java)
 
-    @Suppress("deprecation")
     fun showGUI(player: Player, gui: GUI) {
         player.playSound(player.location, Sound.BLOCK_CHEST_OPEN, 1F, 1.5F)
 
         when (gui) {
             GUI.COMPASS -> {
-                val inv = Bukkit.createInventory(null, 27, "§c§lNavigator")
+                val inv = Bukkit.createInventory(null, 27, Component.text("§c§lNavigator"))
 
                 placeholdersByPattern(inv, 0, "cbcbcbcbc")
                 placeholdersByPattern(inv, 2, "bcbcbcbcb")
 
-                val count = main.playerCount.skybee
-                var itemCount = count;
+                val count = main.playerCount[Server.SKYBEE] ?: 0
+                var itemCount = count
                 if (count == 0) itemCount = 1
 
                 inv.setItem(10, getLobbyItem(LobbyItem.COMPASS_SPAWN, 1))
                 inv.setItem(12, getLobbyItem(LobbyItem.COMPASS_SKYBLOCK, itemCount,
-                    StringPair("%count", "${main.playerCount.skybee}")))
+                    StringPair("%count", "$count")))
                 inv.setItem(14, getLobbyItem(LobbyItem.COMPASS_HARDCORE, 1))
                 inv.setItem(16, getLobbyItem(LobbyItem.COMPASS_SOON, 1))
 
@@ -59,7 +60,7 @@ object GUIUtil {
                 }
                 val mat = patternToMaterial(identifier)
                 if (mat != null) {
-                    inv.setItem(slot, CustomItem(mat, 1).setName("§0").itemStack)
+                    inv.setItem(slot, ItemBuilder.of(mat).title(Component.text("§0")).item)
                 }
                 slot++
             }
@@ -88,15 +89,18 @@ object GUIUtil {
         return getItemStack(item.title, amount, item.mat, description)
     }
 
-    @Suppress("deprecation")
-    fun getItemStack(title: String, amount: Int, mat: Material, description: String?): ItemStack {
+    private fun getItemStack(title: String, amount: Int, mat: Material, description: String?): ItemStack {
         val item = ItemStack(mat, amount)
-        val meta = item.itemMeta
-        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', title))
-        if (description != null) {
-            meta.lore = ChatColor.translateAlternateColorCodes('&', description).split("//")
+        item.editMeta {
+            it.displayName(Component.text(ChatColor.translateAlternateColorCodes('&', title)))
+            if (description != null) {
+                val lore = ArrayList<Component>()
+                for (line in ChatColor.translateAlternateColorCodes('&', description).split("//")) {
+                    lore.add(Component.text(line))
+                }
+                it.lore(lore)
+            }
         }
-        item.itemMeta = meta
         return item
     }
 

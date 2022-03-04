@@ -1,4 +1,4 @@
-package de.leonheuer.skycave.lobby.listener
+package de.leonheuer.skycave.lobby.listener.player
 
 import de.leonheuer.skycave.lobby.enums.Command
 import de.leonheuer.skycave.lobby.enums.Message

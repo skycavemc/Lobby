@@ -1,7 +1,7 @@
 package de.leonheuer.skycave.lobby.enums
 
-enum class GUI {
+enum class Server {
 
-    COMPASS
+    ALL, SKYBEE
 
 }

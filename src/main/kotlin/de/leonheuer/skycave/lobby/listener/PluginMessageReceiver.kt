@@ -2,6 +2,7 @@ package de.leonheuer.skycave.lobby.listener
 
 import com.google.common.io.ByteStreams
 import de.leonheuer.skycave.lobby.SkyCaveLobby
+import de.leonheuer.skycave.lobby.enums.Server
 import org.bukkit.entity.Player
 import org.bukkit.plugin.messaging.PluginMessageListener
 
@@ -17,9 +18,10 @@ class PluginMessageReceiver(private val main: SkyCaveLobby): PluginMessageListen
         val sub = input.readUTF()
 
         if (sub.equals("PlayerCount")) {
-            when (input.readUTF()) {
-                "ALL" -> main.playerCount.all = input.readInt()
-                "skybee" -> main.playerCount.skybee = input.readInt()
+            try {
+                val server = Server.valueOf(input.readUTF())
+                main.playerCount[server] = input.readInt()
+            } catch (_: IllegalArgumentException) {
             }
         }
     }

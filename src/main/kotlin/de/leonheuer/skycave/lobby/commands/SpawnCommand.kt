@@ -15,9 +15,8 @@ class SpawnCommand(private val main: SkyCaveLobby): CommandExecutor {
             return true
         }
 
-        val player: Player = sender
-        player.teleport(main.dataManager.getSpawn())
-        player.sendMessage(Message.SPAWN_SUCCESS.getMessage())
+        sender.teleport(main.dataManager.getSpawn())
+        sender.sendMessage(Message.SPAWN_SUCCESS.getMessage())
         return true
     }
 

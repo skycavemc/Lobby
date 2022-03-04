@@ -1,4 +1,4 @@
-package de.leonheuer.skycave.lobby.listener
+package de.leonheuer.skycave.lobby.listener.player
 
 import com.google.common.io.ByteStreams
 import de.leonheuer.skycave.lobby.SkyCaveLobby
