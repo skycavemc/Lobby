@@ -19,7 +19,8 @@ class PluginMessageReceiver(private val main: SkyCaveLobby): PluginMessageListen
 
         if (sub.equals("PlayerCount")) {
             try {
-                val server = Server.valueOf(input.readUTF())
+                val string = input.readUTF().uppercase()
+                val server = Server.valueOf(string)
                 main.playerCount[server] = input.readInt()
             } catch (_: IllegalArgumentException) {
             }
